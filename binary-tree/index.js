@@ -1,3 +1,4 @@
+import { applyRule } from "../helper.js";
 /*
 Variables: 0, 1
 Constants: "[", "]"
@@ -14,21 +15,8 @@ const rules = {
 const axiom = "0";
 
 // lindenmayer string creation
-let mutableAxiom = axiom;
 const iterations = 7;
-for (let i = 0; i < iterations; i++) {
-    let string = '';
-    for (let j = 0; j < mutableAxiom.length; j++) {
-        const letter = mutableAxiom[j];
-
-        let appliedRule = rules[letter];
-        if (appliedRule === undefined) {
-            appliedRule = letter;
-        }
-        string += appliedRule;
-    }
-    mutableAxiom = string;
-}
+let mutableAxiom = applyRule(axiom, iterations, rules);
 
 //interpretation data
 let startingPoint = [0 ,0];
