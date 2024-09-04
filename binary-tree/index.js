@@ -60,12 +60,7 @@ const interpretation = {
     }
 }
 
-for (let i = 0; i < mutableAxiom.length; i++) {
-    const letter = mutableAxiom[i];
-
-    const interp = interpretation[letter];
-    interp();
-}
+runInterpretation(mutableAxiom, interpretation);
 console.log(mutableAxiom);
 console.log(points);
 

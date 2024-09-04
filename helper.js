@@ -15,4 +15,13 @@ const applyRule = (axiom, iterations, rules) => {
     return axiom;
 }
 
-export {applyRule};
+const runInterpretation = (axiom, interpretation) => {
+    for (let i = 0; i < axiom.length; i++) {
+        const letter = axiom[i];
+    
+        const interp = interpretation[letter];
+        interp();
+    }
+}
+
+export {applyRule, runInterpretation};

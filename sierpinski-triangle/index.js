@@ -1,48 +1,45 @@
 import { applyRule, runInterpretation } from "../helper.js";
-/*
-Variables: F
-Constants: + -
-Axiom: F
-Rules: (F -> F+F-F-F+F)
 
-F: draw forward
-+: turn left 90 deg
--: turn right 90 deg
+/*
+Variables: F G
+Constants: + -
+Axiom: F-G-G
+Rules: (F -> F-G+F+G-F), (G -> GG)
+Angle: 120 degrees
 */
 
 const rules = {
-    "F": "F+F-F-F+F",
+    "F": "F-G+F+G-F",
+    "G": "GG"
 };
 
-const axiom = "F";
-
-const iterations = 5;
+const iterations = 6;
+const axiom = "F-G-G"
 let mutableAxiom = applyRule(axiom, iterations, rules);
-
 //console.log(mutableAxiom);
 
-// interpretation data
-let startingPoint = [-200 ,0];
+let startingPoint = [0 ,0];
 let currentAngle = 0;
-let currentPosition = startingPoint;
-let lineDistance = 3;
+let lineDistance = 5;
 let points = [startingPoint];
 
+const goStraight = () => {
+    let currentPosition = points.slice(-1)[0];
+    const nextPoint = [
+        currentPosition[0] + lineDistance * Math.cos(currentAngle * Math.PI / 180),
+        currentPosition[1] + lineDistance * Math.sin(currentAngle * Math.PI / 180),
+    ];
+    points.push(nextPoint);
+}
 const interpretation = {
-    "F": () => {
-        currentPosition = points.slice(-1)[0];
-        const nextPoint = [
-            currentPosition[0] + lineDistance * Math.cos(currentAngle * Math.PI / 180),
-            currentPosition[1] + lineDistance * Math.sin(currentAngle * Math.PI / 180),
-        ];
-        points.push(nextPoint);
-    },
+    "F": goStraight,
+    "G": goStraight,
     "+": () => {
-        currentAngle -= 90;
+        currentAngle -= 120;
     },
     "-": () => {
-        currentAngle += 90;
-    },
+        currentAngle += 120;
+    }
 };
 
 runInterpretation(mutableAxiom, interpretation);
