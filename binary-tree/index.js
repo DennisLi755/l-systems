@@ -15,7 +15,8 @@ const axiom = "0";
 
 // lindenmayer string creation
 let mutableAxiom = axiom;
-for (let i = 0; i < 7; i++) {
+const iterations = 7;
+for (let i = 0; i < iterations; i++) {
     let string = '';
     for (let j = 0; j < mutableAxiom.length; j++) {
         const letter = mutableAxiom[j];
