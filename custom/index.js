@@ -15,7 +15,7 @@ X -> Draw Forward (half length)
 */
 
 const rules = {
-    "F": "X+F+F+F+F",
+    "F": "X+F+F+X+F",
     "X": "FF+-X"
 };
 
@@ -26,7 +26,7 @@ let mutableAxiom = applyRule(axiom, iterations, rules);
 console.log(mutableAxiom);
 
 // interpretation data
-let startingPoint = [0, 0];
+let startingPoint = [300, 300];
 let currentAngle = 0;
 let lineDistance = 5;
 let points = [startingPoint];
